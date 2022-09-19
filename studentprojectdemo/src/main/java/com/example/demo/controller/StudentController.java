@@ -17,13 +17,13 @@ public class StudentController {
     private StudentService studentService;
 	
 	
-	@PostMapping(value= "/add")
+	@PostMapping(value= "/addstudent")
 	public ResponseEntity<String> addStudent(@RequestBody Student studentNewEntity){
         Student student=studentService.addStudent(studentNewEntity);
 		return new ResponseEntity<>("Student successfully registered!", HttpStatus.CREATED);
 	}
 	
-	@PutMapping(path = "/update")
+	@PutMapping(path = "/updatestudent")
     public ResponseEntity<String> updateStudent(
             @RequestBody Student studentEntity) {
         Student student = studentService.updateStudent(studentEntity);
@@ -32,14 +32,14 @@ public class StudentController {
     }
 	
 	
-    @DeleteMapping(path = "/{id}/delete")
+    @DeleteMapping(path = "/{id}/deletestudent")
     public void deleteStudent(@PathVariable(name = "id") int id) {
         studentService.deleteStudent(id);
     }
 
 
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/student/{id}")
     public ResponseEntity<Optional<Student>> getStudent(
             @PathVariable(name = "id") int id) {
         Optional<Student> student = studentService.getStudentByRollNo(id);

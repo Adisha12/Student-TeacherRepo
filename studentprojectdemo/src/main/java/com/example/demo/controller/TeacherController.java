@@ -17,13 +17,13 @@ public class TeacherController {
     private TeacherService teacherService;
 
 
-    @PostMapping(value= "/add")
+    @PostMapping(value= "/addteacher")
     public ResponseEntity<String> addTeacher(@RequestBody Teacher teacherNewEntity){
         Teacher teacher=teacherService.addTeacher(teacherNewEntity);
         return new ResponseEntity<>("Teacher successfully registered!", HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/update")
+    @PutMapping(path = "/updateteacher")
     public ResponseEntity<String> updateTeacher(
             @RequestBody Teacher teacherEntity) {
         Teacher teacher = teacherService.updateTeacher(teacherEntity);
@@ -32,14 +32,14 @@ public class TeacherController {
     }
 
 
-    @DeleteMapping(path = "/{id}/delete")
+    @DeleteMapping(path = "/{id}/deleteteacher")
     public void deleteTeacher(@PathVariable(name = "id") int id) {
         teacherService.deleteTeacher(id);
     }
 
 
 
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/teacher/{id}")
     public ResponseEntity<Optional<Teacher>> getTeacher(
             @PathVariable(name = "id") int id) {
         Optional<Teacher> teacher = teacherService.getTeacherById(id);
