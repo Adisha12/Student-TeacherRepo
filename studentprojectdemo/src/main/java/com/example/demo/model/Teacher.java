@@ -1,7 +1,13 @@
 package com.example.demo.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Entity(name="TeacherEntity")
+@Getter
+@Setter
 public class Teacher {
 
     @Id
@@ -17,7 +23,7 @@ public class Teacher {
     @Column(length=1)
     private char gender;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
-    private Student subject_id;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "subject_id")
+    private Subject subject_id;
 }

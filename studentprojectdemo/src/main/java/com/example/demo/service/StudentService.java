@@ -2,8 +2,10 @@ package com.example.demo.service;
 
 import com.example.demo.exception.StudentAlreadyPresentException;
 import com.example.demo.exception.StudentNotFoundException;
+import com.example.demo.exception.TeacherNotFoundException;
 import com.example.demo.model.Student;
 import com.example.demo.repository.TeacherRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.repository.StudentRepository;
@@ -11,6 +13,7 @@ import com.example.demo.repository.StudentRepository;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class StudentService {
 
 	@Autowired
@@ -22,13 +25,14 @@ public class StudentService {
 
 	public Student addStudent(Student studentEntity) {
 		if (studentrepo.findById(studentEntity.getId()).isPresent()) {
-
 			log.error("Student already exists");
 			throw new StudentAlreadyPresentException();
-		}
-
-			else
+		} else if (teacherrepo.findById(studentEntity.getClass_teacher_id().getId()).isPresent())
+		{
 			return studentrepo.save(studentEntity);
+		} else
+			log.error("Teacher id doesn't exists");
+		    throw new TeacherNotFoundException();
 
 	}
 

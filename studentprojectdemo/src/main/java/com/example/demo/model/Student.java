@@ -21,15 +21,15 @@ public class Student {
 	private String first_name;
 
 	@Column(nullable = false, length=99)
-	private String second_name;
+	private String last_name;
 
 	@Column(length=1)
 	private char gender;
 
 	private int classno;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id", referencedColumnName = "id")
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "class_teacher_id")
 	private Teacher class_teacher_id;
 	
 }

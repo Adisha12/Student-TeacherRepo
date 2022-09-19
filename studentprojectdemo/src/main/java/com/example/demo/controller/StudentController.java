@@ -32,17 +32,17 @@ public class StudentController {
     }
 	
 	
-    @DeleteMapping(path = "/{rollno}/delete")
-    public void deleteStudent(@PathVariable(name = "rollno") int rollno) {
-        studentService.deleteStudent(rollno);
+    @DeleteMapping(path = "/{id}/delete")
+    public void deleteStudent(@PathVariable(name = "id") int id) {
+        studentService.deleteStudent(id);
     }
 
 
 
-    @GetMapping(path = "/{rollno}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<Optional<Student>> getStudent(
-            @PathVariable(name = "rollno") int rollno) {
-        Optional<Student> student = studentService.getStudentByRollNo(rollno);
+            @PathVariable(name = "id") int id) {
+        Optional<Student> student = studentService.getStudentByRollNo(id);
         return ResponseEntity.ok(student);
     }
 }
